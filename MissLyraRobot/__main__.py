@@ -79,54 +79,65 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
-yumi_IMG = "https://telegra.ph/file/73337f3406d18b80a2683.jpg"
+yumi_IMG = "https://telegra.ph/file/2079b686ea131a7bda2cd.jpg"
 
 PM_START_TEXT = """
-*👋 Hello {}*
+Hey !
+I am [Akira](https://telegra.ph/file/73337f3406d18b80a2683.jpg) 
+I'm a Super Powerful Group management bot with suites all your needs !
 
-Hey There My Name Is *Lyra* [I](https://telegra.ph/file/73337f3406d18b80a2683.jpg) Am Here To Help You Manage Your Groups!
-Hit /Help To Find Out More About How To Use Me To My Full Potential!
-────────────────────────
-乂 Ping Time: {}
-乂 {} User, Database {} Chats.
-────────────────────────
-*Powered By: @TheXCodeTeam*
+Join @THERADION for my updates !
+
+☆━━━━━━━━━━━━━━━━☆ 
+
+⫸ **Bot Status** :- {} User, Database {} Chats.
+
+☆━━━━━━━━━━━━━━━━☆ 
+
+If you have any problem or query in setting up the bot, report it at
+our [support group](t.me/RADIONSUPPORT).
+
+☆━━━━━━━━━━━━━━━━☆ 
+
+© @THERADION
 """
 
 buttons = [
     [
-        InlineKeyboardButton(text="Hᴇʟᴘ & Cᴏᴍᴍᴀɴᴅꜱ", callback_data="help_back"),
+        InlineKeyboardButton(text="Add me to Serve You !", url="http://t.me/Akiragroupbot?startgroup=true"),
     ],
     [
-        InlineKeyboardButton(text="Aꜱꜱɪꜱᴛᴀɴᴛ", callback_data="MissLyraRobot_asst"),
+        InlineKeyboardButton(text="Help", callback_data="help_back"),
         InlineKeyboardButton(
-            text="SᴏᴜʀᴄᴇCᴏᴅᴇ", url="https://github.com/NitricXd/MissLyraRobot"
+            text="Setup", callback_data="MissLyraRobot_basichelp"
         ),
     ],
     [
-        InlineKeyboardButton(text="Aʙᴏᴜᴛ", callback_data="MissLyraRobot_"),
+        InlineKeyboardButton(text="About", callback_data="MissLyraRobot_"),
         InlineKeyboardButton(
-            text="Bᴀꜱɪᴄ Hᴇʟᴘ", callback_data="MissLyraRobot_basichelp"
+            text="Assistant", callback_data="MissLyraRobot_asst"
         ),
     ],
     [
-        InlineKeyboardButton(text="Sᴜᴍᴍᴏɴ Mᴇ", url="http://t.me/MissLyraRobot?startgroup=true"),
+        InlineKeyboardButton(text="Creator", url="http://t.me/akhilprs"),
     ],
 ]
 
 
 HELP_STRINGS = """
-*✗ MAIN COMMANDS ✗*
+* MAIN COMMANDS *
 
-✗ /start - `Starts me! Your probably already used this.`
-✗ /help - `Click this I ll let you know about myself!`
-✗ /settings - `in PM: will send you your settings for all supported modules.`
-✗ *In A Group: Will Redirect You To Pm With All That Chats Settings.*)"""
+✪ /start - `Starts me! Your probably already used this.`
+✪ /help - `Click this I ll let you know about myself!`
+✪ /settings - `in PM: will send you your settings for all supported modules.`
+✪ *In A Group: Will Redirect You To Pm With All That Chats Settings.*)"""
 
 
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
- @Xd_Nitric's 💕"""
+DONATE_STRING = """Hey, Thanks for giving time to think once for helping my boss to donate this project!
+We actually don't need any financial help, just needed your support to add our
+bot in more and more groups!
+If you wanted to connect with our boss, join @RADIONSUPPORT """
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -211,7 +222,7 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="⬅️ BACK", callback_data="help_back")]]
+                        [[InlineKeyboardButton(text="Back 🔙", callback_data="help_back")]]
                     ),
                 )
 
@@ -242,12 +253,12 @@ def start(update: Update, context: CallbackContext):
             )
     else:
         update.effective_message.reply_photo(
-            yumi_IMG, caption= "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
+            yumi_IMG, caption= "I'm Alive Master\n<b>Uptime:</b> <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="Sᴜᴘᴘᴏʀᴛ", url="https://t.me/XCodeSupport")]]
+                [[InlineKeyboardButton(text="Creator", url="https://t.me/akhilprs")]]
             ),
         )
         
@@ -323,7 +334,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "`Hᴇʀᴇ Iꜱ Tʜᴇ Hᴇʟᴘ`「*{}*」 `Mᴏᴅᴜʟᴇ:`\n".format(
+                "`Here is the Help`「*{}*」 `Module:`\n".format(
                     HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
@@ -379,7 +390,7 @@ def MissLyraRobot_about_callback(update, context):
     query = update.callback_query
     if query.data == "MissLyraRobot_":
         query.message.edit_text(
-            text=""" *Lyra* - `A bot to manage your groups with additional features!`
+            text=""" *Akira* - `A bot to manage your groups with additional features!`
             \n`Here the basic help regarding use of MissLyraRobot.`
             
             \n`Almost all modules usage defined in the help menu, checkout by sending` `/help`
@@ -390,10 +401,10 @@ def MissLyraRobot_about_callback(update, context):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Bᴜɢ'ꜱ", url="https://t.me/XCodeSupport"
+                            text="Bugs", url="https://t.me/RadionSupport"
                         ),
                         InlineKeyboardButton(
-                            text="Bᴏᴛ Lɪꜱᴛ", url="https://t.me/TheXCodeTeam"
+                            text="Creator", url="https://t.me/akhilprs"
                         ),
                     ],
                     [InlineKeyboardButton(text="Back", callback_data="MissLyraRobot_back")],
@@ -418,9 +429,9 @@ def MissLyraRobot_about_callback(update, context):
         query.message.edit_text(
             text=f"*Here's basic Help regarding* *How to use Me?*"
             
-            f"\n\n✗ `Firstly Add` {dispatcher.bot.first_name} `to your group by pressing` [here](http://t.me/{dispatcher.bot.username}?startgroup=true)\n"
-            f"\n✗ `After adding promote me manually with full rights for faster experience.`\n"
-            f"\n✗ `Than send` `/admincache@MissLyraRobot` `in that chat to refresh admin list in My database.`\n"
+            f"\n\n✪ `Firstly Add` {dispatcher.bot.first_name} `to your group by pressing` [here](http://t.me/{dispatcher.bot.username}?startgroup=true)\n"
+            f"\n✪ `After adding promote me manually with full rights for faster experience.`\n"
+            f"\n✪ `Than send` `/admincache@AkiraGroupBot` `in that chat to refresh admin list in my database.`\n"
             f"\n\n*All done now use below given button's to know about use!*\n"
             f"",
             parse_mode=ParseMode.MARKDOWN,
@@ -428,12 +439,12 @@ def MissLyraRobot_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Aᴅᴍɪɴ", callback_data="MissLyraRobot_admin"),
-                    InlineKeyboardButton(text="Nᴏᴛᴇꜱ", callback_data="MissLyraRobot_notes"),
+                    InlineKeyboardButton(text="Admin", callback_data="MissLyraRobot_admin"),
+                    InlineKeyboardButton(text="Notes", callback_data="MissLyraRobot_notes"),
                  ],
                  [
-                    InlineKeyboardButton(text="Sᴜᴘᴘᴏʀᴛ", callback_data="MissLyraRobot_support"),
-                    InlineKeyboardButton(text="Cʀᴇᴅɪᴛ", callback_data="MissLyraRobot_credit"),
+                    InlineKeyboardButton(text="Support", callback_data="MissLyraRobot_support"),
+                    InlineKeyboardButton(text="Devs", callback_data="MissLyraRobot_credit"),
                  ],
                  [
                     InlineKeyboardButton(text="Back", callback_data="MissLyraRobot_back"),
@@ -446,13 +457,13 @@ def MissLyraRobot_about_callback(update, context):
         query.message.edit_text(
             text=f"*Let's Make Your Group Bit Effective Now*"
             
-            f"\n✗ `Congragulations, @MissLyraRobot now ready to manage your group.`"
+            f"\n`Congragulations, @AkiraGroupBot now ready to manage your group.`"
             f"\n\n*Admin Tools*"
-            f"\n✗ `Basic Admin tools help you to protect and powerup your group.`"
-            f"\n✗ `You can ban members, Kick members, Promote someone as admin through commands of bot.`"
+            f"\n• `Basic Admin tools help you to protect and powerup your group.`"
+            f"\n• `You can ban members, Kick members, Promote someone as admin through commands of bot.`"
             f"\n\n*Welcome*"
-            f"\n✗ `Lets set a welcome message to welcome new users coming to your group.`"
-            f"\n✗ `send` `/setwelcome [message]` `to set a welcome message!`",
+            f"\n• `Lets set a welcome message to welcome new users coming to your group.`"
+            f"\n• `send` `/setwelcome [message]` `to set a welcome message!`",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -464,9 +475,9 @@ def MissLyraRobot_about_callback(update, context):
         query.message.edit_text(
             text=f"<b> Setting Up Notes</b>"
             
-            f"\n`✗ You can save message/media/audio or anything as notes`"
-            f"\n`✗ to get a note simply use` # `at the beginning of a word`"
-            f"\n\n`✗ You can also set buttons for notes and filters (refer help menu)`",
+            f"\n`• You can save message/media/audio or anything as notes`"
+            f"\n`•to get a note simply use` # `at the beginning of a word`"
+            f"\n\n`• You can also set buttons for notes and filters (refer help menu)`",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Back", callback_data="MissLyraRobot_basichelp")]]
@@ -474,15 +485,15 @@ def MissLyraRobot_about_callback(update, context):
         )
     elif query.data == "MissLyraRobot_asst":
         query.message.edit_text(
-            text=f"*Hᴇʀᴇ Iꜱ Tʜᴇ Hᴇʟᴘ 「Aꜱꜱɪꜱᴛᴀɴᴛ」 Mᴏᴅᴜʟᴇ:*"
+            text=f"*Here is the Help Assistant Module:*"
             
             f"\n*SETUP ASSISTANT*"
-            f"\n\n✗ `1.) first, add me to your group.`"
-            f"\n\n✗ `2.) then promote me as admin and give all permissions except anonymous admin.`"
-            f"\n\n✗ `3.) add` @MissLyraRobot `to your group:`"
-            f"\n\n✗ `4.) turn on the video chat first before start to play music.`"
-            f"\n\n✗ *Lets Enjoy The Lyra Music And Join Support Group @XCoseSupport*"
-            f"\n\n*✗ Pᴏᴡᴇʀᴇᴅ 💕 Bʏ: @TheXCodeTeam!*",
+            f"\n\n• `1.) first, add me to your group.`"
+            f"\n\n• `2.) then promote me as admin and give all permissions except anonymous admin.`"
+            f"\n\n• `3.) add` @AkiraGroupBot `to your group:`"
+            f"\n\n• `4.) turn on the video chat first before start to play music.`"
+            f"\n\n• *Lets Enjoy The Music And Don't forget to Join Support Group @RADIONSUPPORT for any problem*"
+            f"\n\n© @THERADION",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -493,13 +504,13 @@ def MissLyraRobot_about_callback(update, context):
         query.message.edit_text(
             text=f"*Let's Make Your Group Bit Effective Now*"
             
-            f"\n✗ `Congragulations, MissLyraRobot now ready to manage your group.`"
+            f"\n`Congragulations, Akira now ready to manage your group.`"
             f"\n\n*Admin Tools*"
-            f"\n✗ `Basic Admin tools help you to protect and powerup your group.`"
-            f"\n✗ `You can ban members, Kick members, Promote someone as admin through commands of bot.`"
+            f"\n• `Basic Admin tools help you to protect and powerup your group.`"
+            f"\n• `You can ban members, Kick members, Promote someone as admin through commands of bot.`"
             f"\n\n*Welcome*"
-            f"\n✗ `Lets set a welcome message to welcome new users coming to your group.`"
-            f"\n✗ `send` `/setwelcome [message]` `to set a welcome message!`",
+            f"\n• `Lets set a welcome message to welcome new users coming to your group.`"
+            f"\n• `send` `/setwelcome [message]` `to set a welcome message!`",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -508,19 +519,19 @@ def MissLyraRobot_about_callback(update, context):
         )    
     elif query.data == "MissLyraRobot_support":
         query.message.edit_text(
-            text="* Lyra Support Chats*"
+            text="Official Support"
             
-            "\n\n✗ `Join Support Group/Channel`",
+            "\n\n•`Join Support Group/Channel`",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Lᴏɢ'ꜱ", url="t.me/LyraLogs"),
-                    InlineKeyboardButton(text="Nᴇᴡꜱ", url="t.me/TheXCodeTeam"),
+                    InlineKeyboardButton(text="Updates", url="t.me/THERADION"),
+                    InlineKeyboardButton(text="Support", url="t.me/RADIONSUPPORT"),
                  ],
                  [
-                    InlineKeyboardButton(text="Sᴜᴘᴘᴏʀᴛ", url="https://t.me/XCoseSupport"),
-                    InlineKeyboardButton(text="Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/TheXCodeTeam"),
+                    InlineKeyboardButton(text="Logs", url="https://t.me/AkiraGroupBotLogs"),
+                    InlineKeyboardButton(text="Creator", url="https://t.me/akhilprs"),
                  ],
                  [
                     InlineKeyboardButton(text="Back", callback_data="MissLyraRobot_basichelp"),
@@ -531,15 +542,15 @@ def MissLyraRobot_about_callback(update, context):
         )
     elif query.data == "MissLyraRobot_credit":
         query.message.edit_text(
-            text=f"<b> CREDIT FOR Lyra DEV'S</b>\n"
+            text=f"<b>My Dev </b>\n"
             
-            f"\n`✗ Here Some Developers Helping in Making The Lyra Bot`",
+            f"\n`Akira's Dev Are Here !`",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Nɪᴛʀɪᴄ", url="t.me/Xd_Nitric"),
-                    InlineKeyboardButton(text="Bᴀᴅɴᴀᴍ", url="t.me/iTs_Badnam"),
+                    InlineKeyboardButton(text="Akhil", url="t.me/akhilprs"),
+                    InlineKeyboardButton(text="Sher", url="t.me/SH3ROP"),
                  ],
                  [
                     InlineKeyboardButton(text="Back", callback_data="MissLyraRobot_basichelp"),
@@ -555,8 +566,8 @@ def Source_about_callback(update, context):
     query = update.callback_query
     if query.data == "source_":
         query.message.edit_text(
-            text=""" Hi..😻 I'm *MissLYraRobot*
-                 \nHere is the [🔥Source Code🔥](https://github.com/NitricXd/MissLyraRobot) .""",
+            text=""" Hey I'm *Akira*
+                 \nApril Fool ! Akira Repo is Currently Private!.""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -607,13 +618,13 @@ def get_help(update: Update, context: CallbackContext):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Hᴇʟᴘ ❔",
+                            text="Help",
                             url="t.me/{}?start=help".format(context.bot.username),
                         )
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Sᴜᴘᴘᴏʀᴛ Cʜᴀᴛ 📢 ",
+                            text="Support",
                             url="https://t.me/{}".format(SUPPORT_CHAT),
                         )
                     ],
@@ -809,7 +820,7 @@ def donate(update: Update, context: CallbackContext):
             DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True
         )
 
-        if OWNER_ID != 1947924017 and DONATION_LINK:
+        if OWNER_ID != 2102783671 and DONATION_LINK:
             update.effective_message.reply_text(
                 "You can also donate to the person currently running me "
                 "[here]({})".format(DONATION_LINK),
